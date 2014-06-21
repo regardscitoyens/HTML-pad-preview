@@ -27,6 +27,7 @@ var loadPad = function(){
      .replace(/^.*<body>/, "")
      .replace(/<\/body>.*$/, "")
      .replace(/(<br>|\s)*<em>[^<]*<\/em>(<br>|\s)*/g, " ")
+     .replace(/(p|div)&gt;(<br>|\s)*&lt;(p|div)/g, "$1&gt;&lt;$3")
      .replace(/p&gt;(<br>|\s)*&lt;p/g, "p&gt;&lt;p")
      .replace(/<br>/g, "&lt;br/&gt;")
      .replace(/<[^>]*>/g, "")
