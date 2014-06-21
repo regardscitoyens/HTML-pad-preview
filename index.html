@@ -33,6 +33,7 @@ var loadPad = function(){
      .replace(/&lt;/g, "<")
      .replace(/&gt;/g, ">")
      .replace(/&#x2F;/g, "/")
+     .replace(/&quot;/g, '"')
      .replace(/&amp;/g, "&");
     $("#preview").html(data);
    },
