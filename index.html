@@ -19,7 +19,7 @@ var loadPad = function(){
  if (padUrl) {
   $("#url").html('<a href="'+padUrl+'">'+padUrl+"</a>");
   if (padUrl.search("/p/") == -1)
-   htmlUrl = padUrl.replace(/\/([^\/]*)$/, "/ep/pad/export/$1/latest?format=txt");
+   htmlUrl = padUrl.replace(/\/([^\/]*)$/, "/ep/pad/export/$1/latest?format=html");
   $.get(
    htmlUrl,
    function(data){
