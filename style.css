@@ -3,11 +3,25 @@ body {
  width: 750px;
 }
 #head {
+ position: fixed;
+ top: 0;
+ left: 0;
  text-align: center;
+ width: 100%;
+ height: 35px;
+ background-color: black;
+ color: white;
+ margin: 0;
+ padding-top: 5px;
+ font-weight: bold;
+}
+#head a, #head a:visited {
+ color: white;
 }
 #head input {
  margin-left: 20px;
 }
 #preview {
- margin-bottom: 50px;
+ margin-top: 75px;
+ margin-bottom: 75px;
 }

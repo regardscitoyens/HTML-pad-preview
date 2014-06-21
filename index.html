@@ -17,7 +17,7 @@ var loadPad = function(){
  var padUrl = window.location.search.substring(1)
      htmlUrl = padUrl + "/export/html";
  if (padUrl) {
-  $("#url").html('<a href="'+padUrl+'">'+padUrl+"</a>");
+  $("#url").html('<a target="_blank" href="'+padUrl+'">'+padUrl+"</a>");
   if (padUrl.search("/p/") == -1)
    htmlUrl = padUrl.replace(/\/([^\/]*)$/, "/ep/pad/export/$1/latest?format=html");
   $.get(
@@ -27,7 +27,7 @@ var loadPad = function(){
      .replace(/^.*<body>/, "")
      .replace(/<\/body>.*$/, "")
      .replace(/(<br>|\s)*<em>[^<]*<\/em>(<br>|\s)*/g, " ")
-     .replace(/(p|div)&gt;(<br>|\s)*&lt;(p|div)/g, "$1&gt;&lt;$3")
+     .replace(/(p|div|h\d+)&gt;(<br>|\s)*&lt;(p|div|h\d+)/g, "$1&gt;&lt;$3")
      .replace(/p&gt;(<br>|\s)*&lt;p/g, "p&gt;&lt;p")
      .replace(/<br>/g, "&lt;br/&gt;")
      .replace(/<[^>]*>/g, "")
