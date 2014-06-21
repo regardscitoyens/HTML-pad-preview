@@ -1,0 +1,12 @@
+body {
+ margin: auto;
+ width: 70%;
+}
+#head {
+ text-align: center;
+}
+#head input {
+ margin-left: 20px;
+}
+#preview {
+}
