@@ -14,24 +14,25 @@
  </body>
  <script type="text/javascript">
 var loadPad = function(){
- var padHost = "pad.lqdn.fr";
- var padId = window.location.search.substring(1);
- if (padHost && padId) {
-  var url = "https://"+padHost+"/p/"+padId;
-  $("#url").html('<a href="'+url+'">'+url+'</a>');
+ var padUrl = window.location.search.substring(1)
+     htmlUrl = padUrl + "/export/html";
+ if (padUrl) {
+  $("#url").html('<a href="'+padUrl+'">'+padUrl+"</a>");
+  if (padUrl.search("/p/") == -1)
+   htmlUrl = padUrl.replace(/\/([^\/]*)$/, "/ep/pad/export/$1/latest?format=txt");
   $.get(
-   url+"/export/html",
+   htmlUrl,
    function(data){
-    data = data.replace(/\n/g, '')
-     .replace(/^.*<body>/, '')
-     .replace(/<\/body>.*$/, '')
-     .replace(/(<br>|\s)*<em>[^<]*<\/em>(<br>|\s)*/, ' ')
-     .replace(/p&gt;(<br>|\s)*&lt;p/g, 'p&gt;&lt;p')
-     .replace(/<br>/g, '&lt;br/&gt;')
-     .replace(/<[^>]*>/g, '')
-     .replace(/&lt;/g, '<')
-     .replace(/&gt;/g, '>')
-     .replace(/&#x2F;/g, '/');
+    data = data.replace(/\n/g, "")
+     .replace(/^.*<body>/, "")
+     .replace(/<\/body>.*$/, "")
+     .replace(/(<br>|\s)*<em>[^<]*<\/em>(<br>|\s)*/, " ")
+     .replace(/p&gt;(<br>|\s)*&lt;p/g, "p&gt;&lt;p")
+     .replace(/<br>/g, "&lt;br/&gt;")
+     .replace(/<[^>]*>/g, "")
+     .replace(/&lt;/g, "<")
+     .replace(/&gt;/g, ">")
+     .replace(/&#x2F;/g, "/");
     $("#preview").html(data);
    },
    "html"
