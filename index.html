@@ -8,7 +8,9 @@
   <p id="head">
    Source:
    <span id="url"></span>
-   <input type="button" onclick="loadPad();" value="Refresh"></input> 
+   <input type="button" onclick="loadPad();" value="Refresh"></input>
+   Clean raw HTML:
+   <input type="text" onclick="this.select();" value="" id="copy" />
   </p>
   <div id="preview"></div>
  </body>
@@ -37,6 +39,12 @@ var loadPad = function(){
      .replace(/&quot;/g, '"')
      .replace(/&amp;/g, "&");
     $("#preview").html(data);
+    $("#copy").attr(
+     "value",
+     $("#preview").html()
+      .replace(/<em class="comment"[^>]*>.*?<\/em>/g, '')
+      .trim()
+    );
     $(".comment").map(function(i,c){
      $(c).attr("style",
         "position: absolute;" +

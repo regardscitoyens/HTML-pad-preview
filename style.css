@@ -20,6 +20,7 @@ body {
 }
 #head input {
  margin-left: 20px;
+ margin-right: 20px;
 }
 #preview {
  margin-top: 75px;
