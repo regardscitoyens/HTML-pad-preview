@@ -32,3 +32,7 @@ body {
 .comment {
  display: none;
 }
+.note {
+ font-weight: bold;
+ background-color: #FD7;
+}
