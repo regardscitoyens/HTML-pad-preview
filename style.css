@@ -25,3 +25,6 @@ body {
  margin-top: 75px;
  margin-bottom: 75px;
 }
+#preview a, #preview a:visited {
+ color: #006;
+}
