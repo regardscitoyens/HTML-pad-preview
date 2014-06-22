@@ -28,3 +28,6 @@ body {
 #preview a, #preview a:visited {
  color: #006;
 }
+.comment {
+ display: none;
+}
