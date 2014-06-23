@@ -1,6 +1,7 @@
 body {
  margin: auto;
  width: 750px;
+ background-color: #F8F8F8;
 }
 #head {
  position: fixed;
@@ -38,8 +39,8 @@ body {
  margin-left: 12px;
 }
 #preview {
- margin-top: 75px;
- margin-bottom: 75px;
+ padding: 60px 5px 60px 5px;
+ background-color: #FFF;
 }
 #preview a, #preview a:visited {
  color: #006;
