@@ -67,6 +67,9 @@ var loadPad = function(){
   );
  }
 };
-$(document).ready(loadPad);
+$(document).ready(function(){
+ loadPad();
+ setInterval(loadPad, 6000);
+});
  </script>
 </html>
