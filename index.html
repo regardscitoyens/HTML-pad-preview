@@ -55,7 +55,8 @@ var updateUrl = function(){
      "value",
      $("#preview").html()
       .replace(/<sup class="note">\*<\/sup><em class="comment"[^>]*>.*?<\/em>/g, '')
-      .trim()
+      .replace(/^(<br>|\s)*/, "")
+      .replace(/(<br>|\s)*$/, "")
     );
     $(".comment").map(function(i,c){
      var col = "#" + colors[i % colors.length];
