@@ -18,6 +18,7 @@
 var loadPad = function(){
  var padUrl = window.location.search.substring(1)
      htmlUrl = padUrl + "/export/html",
+     colors = ['FD7', 'FBB', 'ADF', 'BFF', 'DBF', 'BFB']
      commentW = (window.innerWidth - $('body').innerWidth())/2;
  if (padUrl) {
   $("#url").html('<a target="_blank" href="'+padUrl+'">'+padUrl+"</a>");
@@ -46,16 +47,20 @@ var loadPad = function(){
       .trim()
     );
     $(".comment").map(function(i,c){
-     $(c).attr("style",
-        "position: absolute;" +
-        (i % 2 == 0 ? "righ" : "lef")+"t: "+Math.floor(0.1*commentW)+";" +
-        "display: inline;" +
-        "background-color: #FD7;" +
-        "border-radius: 8px;" +
-        "padding: 5px;" +
-        "width: "+Math.floor(0.8*commentW)+"px;" +
-        "z-index: -1;"
-     );
+     var col = "#" + colors[i % colors.length];
+     $(c).attr(
+      "style",
+      "position: absolute;" +
+      (i % 2 == 0 ? "righ" : "lef")+"t: "+Math.floor(0.1*commentW)+";" +
+      "display: inline;" +
+      "background-color: "+col+";" +
+      "border-radius: 8px;" +
+      "padding: 5px;" +
+      "font-size: 16px;" +
+      "font-weight: normal;" +
+      "width: "+Math.floor(0.8*commentW)+"px;" +
+      "z-index: -1;"
+     ).prev().css("background-color", col);
     });
    },
    "html"
