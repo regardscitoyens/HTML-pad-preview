@@ -15,12 +15,27 @@ body {
  padding-top: 5px;
  font-weight: bold;
 }
+#title {
+ position: absolute;
+ left: 5;
+ top: 5;
+ font-size: 22px;
+}
+#code {
+ position: absolute;
+ right: 25;
+ top: 8;
+ font-size: 18px;
+ font-weight: normal
+}
+#title a, #code a {
+ text-decoration: none;
+}
 #head a, #head a:visited {
  color: white;
 }
-#head input {
- margin-left: 20px;
- margin-right: 20px;
+#head input, #head span {
+ margin-left: 12px;
 }
 #preview {
  margin-top: 75px;

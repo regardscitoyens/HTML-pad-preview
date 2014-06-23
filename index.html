@@ -6,24 +6,34 @@
  </head>
  <body>
   <p id="head">
-   Source:
-   <span id="url"></span>
+   <span id="title"><a href=".">HTML Pad Preview</a></span>
+   <span id="source"></span>
+   <input type="text" style="width:300px;" id="url" onchange="updateUrl();" value=""></input>
    <input type="button" onclick="loadPad();" value="Refresh"></input>
-   Clean raw HTML:
+   <span>Clean raw HTML:</span>
    <input type="text" onclick="this.select();" value="" id="copy" />
+   <span id="code"><a href="https://github.com/regardscitoyens/HTML-pad-preview">code</a></span>
   </p>
   <div id="preview"></div>
  </body>
  <script type="text/javascript">
-var loadPad = function(){
- var padUrl = window.location.search.substring(1)
+var updateUrl = function(){
+ window.location.hash = "#" + $("#url").val();
+},  loadPad = function(){
+ var padUrl = window.location.hash.substring(1),
      htmlUrl = padUrl + "/export/html",
-     colors = ['FD7', 'FBB', 'ADF', 'BFF', 'DBF', 'BFB']
+     colors = ['FD7', 'FBB', 'ADF', 'BFF', 'DBF', 'BFB'],
      commentW = (window.innerWidth - $('body').innerWidth())/2;
- if (padUrl) {
-  $("#url").html('<a target="_blank" href="'+padUrl+'">'+padUrl+"</a>");
-  if (padUrl.search("/p/") == -1)
-   htmlUrl = padUrl.replace(/\/([^\/]*)$/, "/ep/pad/export/$1/latest?format=html");
+  if (!$("#url").attr("value"))
+   $("#url").attr("value", padUrl);
+  if (!padUrl) {
+   htmlUrl = "./homepad-export.html";
+   $("#source").html('Source pad:');
+  } else {
+   if (padUrl.search("/p/") == -1)
+    htmlUrl = padUrl.replace(/\/([^\/]*)$/, "/ep/pad/export/$1/latest?format=html");
+   $("#source").html('<a target="_blank" href="'+padUrl+'">Source pad:</a>');
+  }
   $.get(
    htmlUrl,
    function(data){
@@ -64,12 +74,18 @@ var loadPad = function(){
     });
    },
    "html"
-  );
- }
+  ).fail(function(){
+   $("#url").val("");
+   updateUrl();
+  });
 };
 $(document).ready(function(){
  loadPad();
- setInterval(loadPad, 6000);
+ setInterval(loadPad, 15000);
+ $(window).on('hashchange', function(){
+  $("#url").val(window.location.hash.substring(1));
+  loadPad();
+ });
 });
  </script>
 </html>
