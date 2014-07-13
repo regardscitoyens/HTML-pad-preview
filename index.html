@@ -18,12 +18,17 @@
  </body>
  <script type="text/javascript">
 var updateUrl = function(){
- window.location.hash = "#" + $("#url").val();
+ if (!window.location.search)
+   window.location.hash = "#" + $("#url").val();
 },  loadPad = function(){
  var padUrl = window.location.hash.substring(1),
-     htmlUrl = padUrl + "/export/html",
+     htmlUrl,
      colors = ['FD7', 'FBB', 'ADF', 'BFF', 'DBF', 'BFB'],
      commentW = (window.innerWidth - $('body').innerWidth())/2;
+  if (window.location.search) {
+    padUrl = window.location.search.substring(1);
+    $("#url").attr("value", padUrl);
+  }
   if (!$("#url").attr("value"))
    $("#url").attr("value", padUrl);
   if (!padUrl) {
@@ -32,6 +37,7 @@ var updateUrl = function(){
   } else {
    if (padUrl.search("/p/") == -1)
     htmlUrl = padUrl.replace(/\/([^\/]*)$/, "/ep/pad/export/$1/latest?format=html");
+   else htmlUrl = padUrl + "/export/html",
    $("#source").html('<a target="_blank" href="'+padUrl+'">Source pad:</a>');
   }
   $.get(
@@ -85,8 +91,10 @@ $(document).ready(function(){
  loadPad();
  setInterval(loadPad, 15000);
  $(window).on('hashchange', function(){
-  $("#url").val(window.location.hash.substring(1));
-  loadPad();
+  if (!window.location.search) {
+   $("#url").val(window.location.hash.substring(1));
+   loadPad();
+  }
  });
 });
  </script>
