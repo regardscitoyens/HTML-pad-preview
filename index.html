@@ -28,6 +28,7 @@ var updateUrl = function(){
   if (window.location.search) {
     padUrl = window.location.search.substring(1);
     $("#url").attr("value", padUrl);
+    $("#url").attr("disabled", "disabled");
   }
   if (!$("#url").attr("value"))
    $("#url").attr("value", padUrl);
