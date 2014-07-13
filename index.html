@@ -9,6 +9,8 @@
    <span id="title"><a href=".">HTML Pad Preview</a></span>
    <span id="source"></span>
    <input type="text" style="width:300px;" id="url" onchange="updateUrl();" value=""></input>
+   <span>Width: </span>
+   <input type="text" style="width:30px;" id="width" onchange="updateWidth();" value="750"> px</input>
    <input type="button" onclick="loadPad();" value="Refresh"></input>
    <span>Clean raw HTML:</span>
    <input type="text" onclick="this.select();" value="" id="copy" />
@@ -20,6 +22,9 @@
 var updateUrl = function(){
  if (!window.location.search)
    window.location.hash = "#" + $("#url").val();
+},  updateWidth = function(){
+  $("body").css("width", (parseInt($("#width").val()) + 10) + "px");
+  loadPad();
 },  loadPad = function(){
  var padUrl = window.location.hash.substring(1),
      htmlUrl, leftH = 0, rightH = 0,
