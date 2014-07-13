@@ -49,7 +49,7 @@ var updateUrl = function(){
      .replace(/(&nbsp;|\s)+/g, " ")
      .replace(/(<br>|\s)*<em>([^<]+)<\/em>(<br>|\s)*/g, '&lt;sup class="note"&gt;*&lt;/sup&gt;&lt;em class="comment"&gt;$2&lt;/em&gt; ')
      .replace(/(p|div|h\d+|sup|em)&gt;(<br>|\s)*&lt;(p|div|h\d+|sup|em)/g, "$1&gt;&lt;$3")
-     .replace(/<br>/g, "&lt;br/&gt;")
+     .replace(/<br>/g, "")
      .replace(/<[^>]*>/g, "")
      .replace(/&lt;/g, "<")
      .replace(/&gt;/g, ">")
