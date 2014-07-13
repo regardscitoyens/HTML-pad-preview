@@ -22,7 +22,7 @@ var updateUrl = function(){
    window.location.hash = "#" + $("#url").val();
 },  loadPad = function(){
  var padUrl = window.location.hash.substring(1),
-     htmlUrl,
+     htmlUrl, leftH = 0, rightH = 0,
      colors = ['FD7', 'FBB', 'ADF', 'BFF', 'DBF', 'BFB'],
      commentW = (window.innerWidth - $('body').innerWidth())/2;
   if (window.location.search) {
@@ -65,9 +65,9 @@ var updateUrl = function(){
       .replace(/^(<br>|\s)*/, "")
       .replace(/(<br>|\s)*$/, "")
     );
-    $(".comment").map(function(i,c){
+    $(".comment").map(function(i){
      var col = "#" + colors[i % colors.length];
-     $(c).attr(
+     $(this).attr(
       "style",
       "position: absolute;" +
       (i % 2 == 0 ? "righ" : "lef")+"t: "+Math.floor(0.05*commentW)+";" +
@@ -77,9 +77,15 @@ var updateUrl = function(){
       "padding: 5px;" +
       "font-size: 16px;" +
       "font-weight: normal;" +
+      "word-wrap: break-word;" +
       "width: "+Math.floor(0.8*commentW)+"px;" +
       "z-index: -1;"
      ).prev().css("background-color", col);
+     var dev = Math.max(0, (i % 2 == 0 ? rightH : leftH) - $(this).position().top);
+     $(this).css("margin-top", dev+"px")
+     dev += $(this).position().top + $(this).innerHeight() + 5;
+     if (i % 2 == 0) rightH = dev;
+     else leftH = dev;
     });
    },
    "html"
